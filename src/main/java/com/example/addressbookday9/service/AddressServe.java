@@ -5,28 +5,34 @@ import com.example.addressbookday9.model.AddressModel;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddressServe {
-    public AddressModel save(AddressDto addressDto){
+public class AddressServe implements IAddressServe {
+    @Override
+    public AddressModel save(AddressDto addressDto) {
         AddressModel addressModel = null;
-        addressModel =  new AddressModel(addressDto);
-        return addressModel;
+       addressModel =  new AddressModel(addressDto);
+       return addressModel;
     }
-    public AddressModel getall(AddressDto addressDto){
+
+    @Override
+    public AddressModel getAll(AddressDto addressDto) {
         AddressModel addressModel = null;
         addressModel  = new AddressModel(addressDto);
         return addressModel;
     }
 
-    public AddressModel getById(AddressDto addressDto){
+    @Override
+    public AddressModel getById(AddressDto addressDto) {
         AddressModel addressModel = null;
-        addressModel = new AddressModel(addressDto);
-        return addressModel;
+      addressModel = new AddressModel(addressDto);
+      return addressModel;
     }
 
-    public AddressModel updateById(AddressDto addressDto){
+    @Override
+    public AddressModel update(AddressDto addressDto) {
         AddressModel addressModel = null;
-        addressModel = new AddressModel(addressDto);
-        return addressModel;
+       addressModel = new AddressModel(addressDto);
+      return addressModel;
     }
+
 
 }
