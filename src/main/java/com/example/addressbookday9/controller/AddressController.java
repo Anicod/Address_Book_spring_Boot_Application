@@ -3,6 +3,8 @@ package com.example.addressbookday9.controller;
 import com.example.addressbookday9.dto.AddressDto;
 import com.example.addressbookday9.dto.AddressResponseDto;
 import com.example.addressbookday9.model.AddressModel;
+import com.example.addressbookday9.service.AddressServe;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,5 +68,41 @@ public class AddressController {
         AddressResponseDto addressResponseDto = new AddressResponseDto(addressModel, "data updated");
         return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
     }
+    //uc4
+    @Autowired
+    AddressServe addressServe;
+
+    @PostMapping("/postdtobyserviclayer")
+    ResponseEntity<AddressResponseDto> postDtoByServiceLayer(@RequestBody AddressDto addressDto){
+       AddressModel addressModel = addressServe.save(addressDto);
+       AddressResponseDto addressResponseDto = new AddressResponseDto(addressModel, "data posted by using service layer");
+       return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
+    }
+    @GetMapping("/getdtobyservice")
+    ResponseEntity<AddressResponseDto> getDtoByServiceLayer(@RequestParam Integer Id, String firstName, String lastName, String address, String city, String state, Long zipCod, String note){
+        AddressDto addressDto = new AddressDto(Id, firstName, lastName, address, city, state, zipCod, note);
+        AddressModel addressModel = addressServe.getall(addressDto);
+        AddressResponseDto addressResponseDto = new AddressResponseDto(addressModel, "get all data");
+        return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
+    }
+
+    @GetMapping("getbyidbydtoservic/{Id}")
+    ResponseEntity<AddressResponseDto> getByIdByDtoServiceLayer(@PathVariable Integer Id, @RequestParam String firstName, String lastName, String address, String city, String state, Long zipCod, String note ){
+        AddressDto addressDto = new AddressDto(Id, firstName, lastName, address, city, state, zipCod, note);
+        AddressModel addressModel = addressServe.getById(addressDto);
+        AddressResponseDto addressResponseDto = new AddressResponseDto(addressModel, "get all data");
+        return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
+
+
+    }
+    @PutMapping("/putbydtosurviclayer/{firstName}")
+    ResponseEntity<AddressResponseDto> putByNameByDtoByServicLayer(@PathVariable String firstName, @RequestParam Integer Id, String lastName, String address, String city, String state, Long zipCod, String note){
+       AddressDto addressDto = new AddressDto(Id, firstName, lastName, address, city, state, zipCod, note);
+       AddressModel addressModel = addressServe.updateById(addressDto);
+       AddressResponseDto addressResponseDto = new AddressResponseDto(addressModel, "data updated");
+       return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
+
+    }
+
 
 }
