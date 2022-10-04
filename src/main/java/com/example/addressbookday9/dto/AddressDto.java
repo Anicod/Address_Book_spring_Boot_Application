@@ -1,16 +1,6 @@
-package com.example.addressbookday9.model;
+package com.example.addressbookday9.dto;
 
-import com.example.addressbookday9.dto.AddressDto;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class AddressModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AddressDto {
     public Integer Id;
     public String firstName;
     public String lastName;
@@ -20,7 +10,7 @@ public class AddressModel {
     public Long zipCode;
     public String note;
 
-    public AddressModel(Integer id, String firstName, String lastName, String address, String city, String state, Long zipCode, String note) {
+    public AddressDto(Integer id, String firstName, String lastName, String address, String city, String state, Long zipCode, String note) {
         Id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,15 +19,6 @@ public class AddressModel {
         this.state = state;
         this.zipCode = zipCode;
         this.note = note;
-    }
-
-    public AddressModel(){
-
-    }
-    public AddressModel(String firstName, String lastName){
-        this.firstName = firstName;
-        this.lastName = lastName;
-
     }
 
     public Integer getId() {
@@ -103,14 +84,7 @@ public class AddressModel {
     public void setNote(String note) {
         this.note = note;
     }
-    public AddressModel(AddressDto addressDto){
-        this.Id = addressDto.Id;
-        this.firstName = addressDto.firstName;
-        this.lastName = addressDto.lastName;
-        this.address = addressDto.address;
-        this.city = addressDto.city;
-        this.state = addressDto.state;
-        this.zipCode = addressDto.zipCode;
-        this.note = addressDto.note;
+    public AddressDto(){
+
     }
 }
