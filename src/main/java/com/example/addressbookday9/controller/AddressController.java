@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class AddressController {
     IAddressServe iAddressServe;
 
     @PostMapping("/postdtobyserviclayer")
-    ResponseEntity<AddressResponseDto> postDtoByServiceLayer(@RequestBody AddressDto addressDto){
+    ResponseEntity<AddressResponseDto> postDtoByServiceLayer(@Valid @RequestBody AddressDto addressDto){
        AddressModel addressModel = iAddressServe.save(addressDto);
        AddressResponseDto addressResponseDto = new AddressResponseDto(addressModel, "data posted successfully in database");
        return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
