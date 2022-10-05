@@ -20,17 +20,6 @@ public class AddressModel {
     public Long zipCode;
     public String note;
 
-    public AddressModel(Integer id, String firstName, String lastName, String address, String city, String state, Long zipCode, String note) {
-        Id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.note = note;
-    }
-
     public AddressModel(){
 
     }
@@ -104,7 +93,6 @@ public class AddressModel {
         this.note = note;
     }
     public AddressModel(AddressDto addressDto){
-        this.Id = addressDto.Id;
         this.firstName = addressDto.firstName;
         this.lastName = addressDto.lastName;
         this.address = addressDto.address;

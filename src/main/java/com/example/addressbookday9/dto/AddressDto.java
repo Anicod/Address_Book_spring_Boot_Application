@@ -1,7 +1,6 @@
 package com.example.addressbookday9.dto;
 
 public class AddressDto {
-    public Integer Id;
     public String firstName;
     public String lastName;
     public String address;
@@ -10,8 +9,7 @@ public class AddressDto {
     public Long zipCode;
     public String note;
 
-    public AddressDto(Integer id, String firstName, String lastName, String address, String city, String state, Long zipCode, String note) {
-        Id = id;
+    public AddressDto( String firstName, String lastName, String address, String city, String state, Long zipCode, String note) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -20,15 +18,6 @@ public class AddressDto {
         this.zipCode = zipCode;
         this.note = note;
     }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
