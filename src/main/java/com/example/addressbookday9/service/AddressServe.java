@@ -1,6 +1,7 @@
 package com.example.addressbookday9.service;
 
 import com.example.addressbookday9.dto.AddressDto;
+import com.example.addressbookday9.exception.AddressBookException;
 import com.example.addressbookday9.model.AddressModel;
 import com.example.addressbookday9.repository.AddressRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class AddressServe implements IAddressServe {
     }
     @Override
     public AddressModel update(Integer Id, AddressModel addressModel) {
-        AddressModel addressModel1 = addressRepository.findById(Id).orElse(null);
+        AddressModel addressModel1 = addressRepository.findById(Id).orElseThrow(()->new AddressBookException("person not found"));
         if (addressModel1 != null){
             addressModel1.setFirstName(addressModel.getFirstName());
             addressModel1.setLastName(addressModel.getLastName());
@@ -49,7 +50,7 @@ public class AddressServe implements IAddressServe {
             addressModel1.setNote(addressModel.getNote());
             return addressRepository.save(addressModel1);
         }
-        return null;
+      return addressModel1;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class AddressServe implements IAddressServe {
             log.info("Id deleted successfully");
         }
         else {
-            log.info("Id does not exist");
+            throw new AddressBookException("id not found");
         }
     }
 
