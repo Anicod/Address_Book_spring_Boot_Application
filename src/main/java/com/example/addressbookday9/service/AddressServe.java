@@ -3,12 +3,14 @@ package com.example.addressbookday9.service;
 import com.example.addressbookday9.dto.AddressDto;
 import com.example.addressbookday9.model.AddressModel;
 import com.example.addressbookday9.repository.AddressRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class AddressServe implements IAddressServe {
     @Autowired
     AddressRepository addressRepository;
@@ -27,11 +29,12 @@ public class AddressServe implements IAddressServe {
 
     @Override
     public AddressModel getById(Integer Id) {
-       AddressModel addressModel = addressRepository.findAll().get(Id);
-       if (addressModel != null){
-           return addressModel;
-       }
-       return null;
+        if(addressRepository.existsById(Id)){
+            log.info("Id found successfully");
+            AddressModel addressModel= addressRepository.findAll().get(Id);
+            return addressModel;
+        }
+        return null;
     }
     @Override
     public AddressModel update(Integer Id, AddressModel addressModel) {
@@ -51,8 +54,15 @@ public class AddressServe implements IAddressServe {
 
     @Override
     public void deleteById(Integer Id) {
-        addressRepository.deleteById(Id);
+        if(addressRepository.existsById(Id)){
+            addressRepository.deleteById(Id);
+            log.info("Id deleted successfully");
+        }
+        else {
+            log.info("Id does not exist");
+        }
     }
+
 
 
 }
