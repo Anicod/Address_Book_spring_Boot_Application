@@ -50,6 +50,18 @@ public class AddressController {
     void deleteById(@RequestParam Integer Id){
         iAddressServe.deleteById(Id);
     }
+    @GetMapping("byname/{name}")
+    ResponseEntity<AddressResponseDto> findByName(@PathVariable String name){
+       List<AddressModel> addressModels = iAddressServe.findByName(name);
+       AddressResponseDto addressResponseDto = new AddressResponseDto(addressModels, "found data by name successfully");
+       return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
+    }
+    @GetMapping("bycity/{city}")
+    ResponseEntity<AddressResponseDto> findByCity(@PathVariable String city){
+        List<AddressModel> addressModels = iAddressServe.findByCity(city);
+        AddressResponseDto addressResponseDto = new AddressResponseDto(addressModels, "city found succcessfully");
+        return new ResponseEntity<>(addressResponseDto, HttpStatus.OK);
+    }
 
 
 }

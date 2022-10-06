@@ -16,6 +16,7 @@ public class AddressBookExceptionHandler {
 }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<AddressResponseDto> method(MethodArgumentNotValidException exception){
-        return null;
+        AddressResponseDto addressResponseDto = new AddressResponseDto("exception while processing request", exception.getMessage());
+        return new ResponseEntity<>(addressResponseDto, HttpStatus.BAD_REQUEST);
     }
 }

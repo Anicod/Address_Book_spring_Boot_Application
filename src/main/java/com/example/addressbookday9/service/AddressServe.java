@@ -19,8 +19,8 @@ public class AddressServe implements IAddressServe {
     public AddressModel save(AddressDto addressDto) {
         AddressModel addressModel = null;
        addressModel =  new AddressModel(addressDto);
-       addressRepository.save(addressModel);
-       return addressModel;
+        addressRepository.save(addressModel);
+        return addressModel;
     }
 
     @Override
@@ -64,6 +64,15 @@ public class AddressServe implements IAddressServe {
         }
     }
 
+    @Override
+    public List<AddressModel> findByName(String name) {
+        return addressRepository.findAddressModelByFirstName(name);
+    }
+
+    @Override
+    public List<AddressModel> findByCity(String city) {
+        return addressRepository.findAddressModelByCity(city);
+    }
 
 
 }

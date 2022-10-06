@@ -11,4 +11,6 @@ public interface IAddressServe {
      AddressModel getById(Integer Id);
      AddressModel update(Integer Id, AddressModel addressModel);
      void deleteById(Integer Id);
+      List<AddressModel> findByName(String namme);
+      List<AddressModel> findByCity(String city);
 }

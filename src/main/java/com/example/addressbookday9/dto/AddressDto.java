@@ -21,7 +21,7 @@ public class AddressDto {
     public String state;
     @NotNull(message = "zip code is requried")
     @Min(value = 10000, message = "pin code is not valid")
-    @Max(value = 99999, message = "not greter than 4 digit")
+    @Max(value = 99999, message = "not greter than 5 digit")
     public Long zipCode;
     @NotEmpty(message = "state not empty")
     @Pattern(regexp = "^[a-zA-Z\\s]{2,}$", message = "note is invalid")
@@ -36,4 +36,7 @@ public class AddressDto {
         this.zipCode = zipCode;
         this.note = note;
     }
+//    public AddressDto(){
+//        super();
+//    }
 }
